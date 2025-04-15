@@ -8,7 +8,7 @@ use App\Models\AbsenTrans;
 
 class AbsenTransController extends Controller
 {
-    //
+    //Ini Controller yang akan digunakan membuat method method api nya
     public function index(){
         return response()->json([
             'data' => AbsenTrans::oldest()

@@ -19,11 +19,12 @@ class DatabaseSeeder extends Seeder
         // // User::factory(10)->create();
         // Post::factory(20)->create(
 
-        // // User::factory()->create([
-        // //     'name' => 'Test User',
-        // //     'email' => 'test@example.com',
-        // );
-        Sale::factory(20)->create();
-    }
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
+    //     Sale::factory(20)->create();
+    // }
+}
 }
 

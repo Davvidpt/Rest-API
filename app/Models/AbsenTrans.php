@@ -12,6 +12,7 @@ class AbsenTrans extends Model
     public $fillable = [
         'absentransid',
         'absentransentryno'
+
         
-    ]
+    ];
 }

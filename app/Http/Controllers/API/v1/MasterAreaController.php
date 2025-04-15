@@ -10,17 +10,34 @@ use Illuminate\Queue\RedisQueue;
 class MasterAreaController extends Controller
 {
     //
-    public function index(){
+    protected $apiKey;
+    public function __construct(Request $request)
+    {
+        $this->apiKey = $request->query('api_key');
+    }
+    public function index(Request $request){
+        if ($this->apiKey!== config('services.api.secret')) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
         return response()->json([
-            'data' => MasterArea::all()
+            MasterArea::all()
         ]);
+        
     }
 
     public function show($id){
-        $area = MasterArea::find($id);
-        if (!$area){
+        
+        if ($this->apiKey !== config('services.api.secret')){
             return response()->json([
-                'message' => 'data tidak ada'
+                'message' => 'unauthorized'
+            ],401);
+        }
+
+        $area = MasterArea::find($id);
+
+        if(!$area){
+            return response()->json([
+                'message' => 'data not found'
             ],404);
         }
         return response()->json([
@@ -28,4 +45,4 @@ class MasterAreaController extends Controller
         ]);
 
     }
-}
+}           
